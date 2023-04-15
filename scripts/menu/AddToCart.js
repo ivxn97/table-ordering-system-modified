@@ -21,6 +21,7 @@ router.post('/', (req, res) => {
   if (req.cookies.cart == null) {
     const initialData = [{item_name: itemName, quantity: quantity, price: itemPrice}];
     res.cookie('cart', JSON.stringify(initialData));
+    console.log(initialData);
     res.redirect('/');
     alert("Item successfully added to cart!");
   }
@@ -28,6 +29,7 @@ router.post('/', (req, res) => {
     const existingCart = JSON.parse(req.cookies.cart);
     const newData = {item_name: itemName, quantity: quantity, price: itemPrice};
     existingCart.push(newData);
+    console.log(existingCart);
     res.cookie('cart', JSON.stringify(existingCart));
     res.redirect('/');
     alert("Item successfully added to cart!");

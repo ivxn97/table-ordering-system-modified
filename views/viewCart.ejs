@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<title>Cart</title>
 <head>
     <style>
       h1{
@@ -13,7 +14,7 @@
     }
 
       body{
-        background-image: url("/Images/background4.jpg");
+        background-color: floralwhite;
       }
 
       .button {
@@ -60,7 +61,10 @@
 
     input[id=priceHeader]{
       padding-left: 6px;
+      white-space: nowrap;
+      overflow: hidden;
     }
+
 
     </style>
 </head>
@@ -79,7 +83,7 @@
       <% var count = 0; %>
       <% var total = 0; %>
       <% cart.forEach(function(carts) { %>
-        <table style= "float:left">
+        <table style= "float:left; white-space: nowrap;">
           <tr>
           <td>
             <li><input type="text" name="name" id="name" value="<%= carts.item_name %>"readonly />
@@ -103,6 +107,9 @@
     </ol>
 
     <button type="button" onclick="checkout()" class="button" >Proceed To Checkout</button>
+    <form id="emptyCart" action="/emptyCart" method="get">
+      <button type="submit" class="button" >Empty Cart</button>
+    </form>
     <script>
       function checkout() {
         location.href = "checkoutPage.html";

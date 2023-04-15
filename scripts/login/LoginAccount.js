@@ -22,28 +22,32 @@ router.post('/', async function(req, res) {
 
       try {
         await sql.connect(config);
-        await sql.query(`SELECT * FROM accounts WHERE (username = '${username}') AND (profiletype = '${profileType}')`, 
+        await sql.query(`SELECT * FROM accounts WHERE (username = '${username}')`, 
         function(err,row){
-          if (row.recordset !=='undefined' && row.recordset !==null) {
-            console.log(password, row.recordset[0].password)
+          if (err) {
+            console.log(err);
+            alert("Login Failed. Please try again.");
+          }
+          else if (row.recordset[0] !== null) {
             bcrypt.compare(password, row.recordset[0].password, function(err, result) {
               if (err) {
-                console.error(err);
+                console.log(err);
+                alert("Login Failed. Please try again.");
               }
               if (result == true) {
-                if (profileType == 'owner') {
+                if (row.recordset[0].profiletype == 'owner') {
                   console.log('Login Success');
                   res.sendFile(path.join(__dirname,'../../public/ownerPage.html'));
                 }
-                else if (profileType == 'manager') {
+                else if (row.recordset[0].profiletype == 'manager') {
                   console.log('Login Success');
                   res.sendFile(path.join(__dirname,'../../public/managerPage.html'));
                 }
-                else if (profileType == 'staff') {
+                else if (row.recordset[0].profiletype == 'staff') {
                   console.log('Login Success');
                   res.sendFile(path.join(__dirname,'../../public/staffPage.html'));
                 }
-                else if (profileType == 'admin') {
+                else if (row.recordset[0].profiletype == 'admin') {
                   console.log('Login Success');
                   res.sendFile(path.join(__dirname,'../../public/adminPage.html'));
                 }
@@ -60,6 +64,7 @@ router.post('/', async function(req, res) {
       })
   }
   catch (err) {
-    console.error(err);
+    console.log(err);
+    alert("Login Failed. Please try again.");
   }});
   module.exports = router;

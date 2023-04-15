@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+      body{
+        background-color: aliceblue;
+      }
+
+      button{
+        float: left;
+        padding: 5px;
+        margin: 12px;
+        cursor: pointer;
+      }
+
+      table{
+        border: 2px double black;
+      }
+
+      th{
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      td{
+        text-align: center;
+        padding: 15px;
+      }
+    </style>
+</head>
+
+<body>
+  <button type="button" style="border-color:red" onclick="Back()">Back</button><br/><br/>
+  <div class="container-fluid">
+    <div class="alert alert-secondary text-center">
+      <h1>View all Menu Items from Database</h1>
+    </div>
+    <ul>
+      <table border = "1">
+        <h2>Foods</h2>
+        <th>Item Name</th>
+        <th>Item Price</th>
+        <th>Item ID</th>
+        <% foodmenu.forEach(function(food) { %>
+          <tr>
+            <td><%= food.item_name %></td>
+            <td><%= food.item_price %></td>
+            <td><%= food.item_id %></td>
+          </tr>
+        <% }); %>
+    </ul>
+    <ul>
+      <table  border = "1">
+        <h2>Drinks</h2>
+        <th>Item Name</th>
+        <th>Item Price</th>
+        <th>Item ID</th>
+      <% drinkmenu.forEach(function(drink) { %>
+        <tr>
+          <td><%= drink.item_name %></td>
+          <td><%= drink.item_price %></td>
+          <td><%= drink.item_id %></td>
+        </tr>
+      <% }); %>
+    </ul>
+    </div>
+    <script>
+      function Back()
+      {
+        location.href = "managerPage.html";
+      }
+    </script>
+</body>
+</html>

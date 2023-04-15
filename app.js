@@ -46,6 +46,7 @@ var emptyCart = require('./scripts/menu/EmptyCart');
 var dailyReport = require('./scripts/owner/DailyReport');
 var weeklyReport = require('./scripts/owner/WeeklyReport');
 var monthlyReport = require('./scripts/owner/MonthlyReport');
+var viewMenuItems = require('./scripts/manager/viewMenu');
 
 //LOGIN PAGE
 //Login Validation
@@ -84,6 +85,8 @@ app.use("/editCouponCode", editCouponCode);
 app.use("/viewCouponCode", viewCouponCode);
 // Manager: Search coupon code
 app.use("/searchCouponCode", searchCouponCode);
+// Manager: View all menu items
+app.use("/viewMenuItems", viewMenuItems);
 
 //STAFF PAGE
 // Staff: Delete Order

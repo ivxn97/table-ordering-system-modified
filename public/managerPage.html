@@ -73,11 +73,14 @@
 			<button class="tablinks" onclick="openTab(event, 'DeleteMenu')">Delete Menu Item</button>
 			<button class="tablinks" onclick="openTab(event, 'EditMenu')">Edit Menu Item</button>
 			<button class="tablinks" onclick="openTab(event, 'SearchMenu')">Search Menu Item</button>
+			<form id="viewMenuForm" action="/viewMenuItems" method="post">
+				<button type="submit">View All Menu Items</button>
+			</form>
 			<button class="tablinks" onclick="openTab(event, 'AddCoupon')">Create Coupon</button>
 			<button class="tablinks" onclick="openTab(event, 'DeleteCoupon')">Delete Coupon</button>
 			<button class="tablinks" onclick="openTab(event, 'EditCoupon')">Edit Coupon</button>
 			<button class="tablinks" onclick="openTab(event, 'SearchCoupon')">Search Coupon</button>
-			<form id="viewAccountsForm" action="/viewCouponCode" method="post">
+			<form id="viewCouponsForm" action="/viewCouponCode" method="post">
 				<button type="submit">View All Coupons</button>
 				<button type="button" onclick="Logoutfunction()">Logout</button>
 			</form>

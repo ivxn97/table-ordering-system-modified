@@ -13,6 +13,11 @@ router.use(cookieParser());
 
 // Menu: View Cart
 router.post('/', (req, res) => {
+  if (req.cookies.cart == undefined) {
+    res.render('cartEmpty');
+  }
+  else {
     res.render('viewCart', {cart: JSON.parse(req.cookies.cart)});
+  }
   });
   module.exports = router;
