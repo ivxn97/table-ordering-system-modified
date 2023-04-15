@@ -1,16 +1,6 @@
 # table-ordering-system
 
-1. Install node.js
-2. Install db browser for sqlite (to view database)
-3. In visual studio code (vscode), go to extensions and download npm, github pull request and issues, github repositories, remote repositories and sqlite.
-4. Make local copy of folder, open terminal on Visual Studio Code and enter:
-5. npm install express --save
-6. npm install sqlite3 --save
-7. npm install body-parser --save
-8. npm install popups
-9. npm install alert
-10. npm install ejs
-11. For test: install mocha, chai, chai-http, sinon, mocha-sinon. use command "npm test" to run test
-12. ctrl +  ` to open terminal
-13. ctrl + shift + p to open command palette 
-14. for sqlite extension in vscode, you can view database.db in local folder by typing >sqlite:run database in command palette
+Improvements made:
+1. Migrated from local SQLITE3 DB to SQL Database on Azure.
+2. Implemented password hashing using bcrypt.
+3. Use Cookies for cart storage instead of Database.

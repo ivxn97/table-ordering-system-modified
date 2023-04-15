@@ -7,12 +7,14 @@ var bodyParser = require ('body-parser');
 var alert = require('alert');
 var app = express()
 var server = http.createServer(app);
+var cookieParser = require('cookie-parser')
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname,'/public')));
 app.use('/img', express.static(__dirname + '/Images'));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
+app.use(cookieParser());
 
 //Scripts
 var loginValidation = require('./scripts/login/LoginAccount');
