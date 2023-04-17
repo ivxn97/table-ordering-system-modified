@@ -21,15 +21,18 @@ router.post('/', async function(req, res){
     console.log('Deleting ' + itemName + ' from table ' + tableNumber);
     try {
       await sql.connect(config);
-      await sql.query(`DELETE FROM kitchenorder WHERE table_no LIKE ${tableNumber} AND food_order LIKE '${itemName}'`, function(err){
+      await sql.query(`DELETE FROM kitchenorder WHERE table_no LIKE ${tableNumber} AND food_order LIKE '${itemName}'`, async function(err){
         if(err){
           console.log(err);
         }
         else{
-          alert("Food item successfully deleted");
-          console.log("Food item successfully deleted");
-        }
-      });
+          await sql.query("SELECT * FROM kitchenorder", (error, rows) => {
+            if (error){
+                console.log(error);
+            }
+            res.render('viewOrders', {kitchenorder: rows.recordset});
+        });
+      }});
     }
     catch (err) {
       console.error(err);

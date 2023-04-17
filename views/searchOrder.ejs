@@ -9,17 +9,33 @@
     th{
       padding-left: 5px;
       padding-right: 5px;
+      background-color:antiquewhite;
+      font-size: 20px;
     }
 
     td{
       text-align: center;
+      font-size: 20px;
+      background-color: white;
     }
     
-    button{
-      float: left;
-      padding: 5px;
-      margin: 12px;
+    .button {
+      background-color:lightgray;
+      color: black;
+      padding: 10px 10px;
+      margin: 8px 0;
+      border: none;
       cursor: pointer;
+      width:150px;
+      border-radius: 15px;
+      font-weight: bold;
+      font-size:16px;
+      border: 2px solid black;
+    }
+    .button:hover {
+      opacity: 0.8;
+      background-color: black;
+      color:white;
     }
     
   </style>
@@ -27,12 +43,14 @@
 
 <body>
   <div class="container-fluid">
-    <div class="alert alert-secondary text-center">
+    <div class="alert alert-secondary text-center" style="margin-left: 50px;">
       <h1>Search order for table number <%= kitchenorder.table_no %></h1>
-      <button type="button" style="border-color:red" onclick="Back()">Back</button><br/><br/><br/>
+      <form id="viewOrdersForm" action="/staffView" method="post">
+        <button type="submit" class="button" >Back</button><br/><br/><br/>
+      </form>
     </div>
     <ul>
-      <table style= "float:left" border ="1">
+      <table style= "float:left; border-collapse: collapse;" border ="1">
         <th>Food Order</th>
         <th>Quantity</th>
         <th>Order Status</th>

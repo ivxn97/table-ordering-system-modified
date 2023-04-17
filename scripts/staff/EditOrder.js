@@ -22,13 +22,19 @@ router.post('/', async function(req, res){
       await sql.connect(config);
       console.log('Editing ' + tableNumber + ' with item name: ' + itemName);
     
-      await sql.query(`UPDATE kitchenorder SET quantity = ${quantity} WHERE table_no = ${tableNumber} AND food_order = '${itemName}';`, function(err) {
+      await sql.query(`UPDATE kitchenorder SET quantity = ${quantity} 
+        WHERE table_no = ${tableNumber} AND food_order = '${itemName}';`, async function(err) {
           if(err){
               alert("Error editing Quantity")
               console.log(err);
             }
             else{
-              alert("Quantity successfully edited");
+              await sql.query("SELECT * FROM kitchenorder", (error, rows) => {
+                if (error){
+                    console.log(error);
+                }
+                res.render('viewOrders', {kitchenorder: rows.recordset});
+            });
               console.log("Quantity successfully edited");
             }
       });

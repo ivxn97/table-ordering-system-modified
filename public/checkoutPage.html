@@ -33,6 +33,10 @@
     text-align: center;
   }
 
+  input[type='number']{
+    width: 195px;
+} 
+
     </style>
 </head>
 <body>
@@ -43,28 +47,21 @@
 
     <form id="checkoutForm" action="/checkoutSuccess" method="post">
         <div class="container">
-            <label for="tableNo"><b>Table No:</b></label><br/>
-            <input type="integer" placeholder="Enter Table No" id="tableNo" name="tableNo"  required><br/>
             <label for="email"><b>Email:</b></label><br/>
             <input type="text" placeholder="Enter Email" id="email" name="email" required><br/>
             <label for="cardNumber"><b>Card Number:</b></label><br/>
-            <input type="text" placeholder="Card Number" id="cardNumber" name="cardNumber" required><br/>
+            <input type="number" placeholder="Card Number" id="cardNumber" name="cardNumber" min="1111111111111111" max="9999999999999999" required><br/>
             <label for="nameCard"><b>Name On Card:</b></label><br/>
             <input type="text" placeholder="Name On Card" id="nameCard" name="nameCard" required><br/>
-            <label for="expDate"><b>Expiration Date: (MM/YY)</b></label><br/>
-            <input type="text" placeholder="(MM/YY)" id="expDate" name="expDate" required><br/>
+            <label for="expDate"><b>Expiration Date: (MMYY)</b></label><br/>
+            <input type="number" placeholder="(MMYY)" id="expDate" name="expDate" min="0123" max="1299"required><br/>
             <label for="securityCode"><b>Security Code:</b></label><br/>
-            <input type="text" placeholder="Security Code" id="securityCode" name="securityCode" required><br/>
+            <input type="number" placeholder="Security Code" id="securityCode" name="securityCode" min="111" max="9999" required><br/>
         </div>
             <button type="submit";>Confirm Payment</button>
     </form>
   
     <script>
-        function CheckoutFunction()
-        {
-          location.href = "checkoutSuccess.html";
-        }
-        
-      </script>
+    </script>
 </body>
 </html>

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+<title>Checkout Success!</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <head>
     <style>
       h1{
@@ -96,11 +98,11 @@
       <% count = count + 1 %>
       <br/><br/>
         <% }); %>
-      <b style="padding-left: 300px;">Total: $</b><%= parseFloat(total).toFixed(2) %>
+      <b style="padding-left: 400px;">Total: $</b><%= parseFloat(total).toFixed(2) %>
     </ol>
     <br/>
       <form id="backForm" action="/emptyCart" method="get">
-        <button type="submit" class="w3-large";>Back to Menu</button>
+        <button type="submit" class="button w3-large";>Back to Menu</button>
       </form>
     <script>
     </script>

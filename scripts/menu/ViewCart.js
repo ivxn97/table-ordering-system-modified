@@ -13,11 +13,15 @@ router.use(cookieParser());
 
 // Menu: View Cart
 router.post('/', (req, res) => {
+  tableNumber = req.cookies.tableNumber;
   if (req.cookies.cart == undefined) {
     res.render('cartEmpty');
   }
+  else if (tableNumber == 'undefined') {
+    res.render('noTable');
+  }
   else {
-    res.render('viewCart', {cart: JSON.parse(req.cookies.cart)});
+    res.render('viewCart', {cart: JSON.parse(req.cookies.cart), table: tableNumber});
   }
   });
   module.exports = router;

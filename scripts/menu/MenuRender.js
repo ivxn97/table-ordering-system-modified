@@ -17,22 +17,49 @@ router.use(cookieParser());
 
 // Render Menu
 router.get('/', async (req, res) => {
-    const parseURL = url.parse(req.url, true);
-    const query = querystring.parse(parseURL.query);
-    const tableNumber = query.table_number;
-    
-    try {
-        await sql.connect(config);
-        await sql.query("SELECT * FROM foodmenu", async (error, rows1) => {
-            await sql.query("SELECT * FROM drinkmenu", (error, rows2) => {
+    //Get table number attribute in URL, clean the URL code and assign the table number as a key value pair.
+    const query = querystring.parse(req.url);
+    const key = Object.keys(query)[0].replace('/?', '');
+    const value = Number(Object.values(query)[0]);
+    const cleanedObj = Object.assign({}, {[key]: value});
+    const tableNumber = cleanedObj.table_number;
+
+    if (tableNumber !== undefined) {
+        res.cookie('tableNumber', JSON.stringify(tableNumber));
+        try {
+            await sql.connect(config);
+            await sql.query("SELECT * FROM foodmenu", async (error, rows1) => {
                 if (error){
                     console.log(error);
                 }
-                res.render('menuPage', {foodmenu: rows1.recordset, drinkmenu: rows2.recordset});
-        })});
+                await sql.query("SELECT * FROM drinkmenu", (error, rows2) => {
+                    if (error){
+                        console.log(error);
+                    }
+                    res.render('menuPage', {foodmenu: rows1.recordset, drinkmenu: rows2.recordset});
+            })});
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
-    catch (err) {
-        console.error(err);
+    else if (req.cookies.tableNumber !== 'undefined') {
+        try {
+            await sql.connect(config);
+            await sql.query("SELECT * FROM foodmenu", async (error, rows1) => {
+                await sql.query("SELECT * FROM drinkmenu", (error, rows2) => {
+                    if (error){
+                        console.log(error);
+                    }
+                    res.render('menuPage', {foodmenu: rows1.recordset, drinkmenu: rows2.recordset});
+            })});
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+    else {
+        res.render("noTable");
     }
   });
   module.exports = router;

@@ -27,7 +27,7 @@ let year = dateFormat.getFullYear();
 // MENU: Push order from cart to kitchenorder
 router.post('/', async function(req, res){
   var email = req.body.email;
-  var tableNo = req.body.tableNo;
+  var tableNo = req.cookies.tableNumber;
   var dateFinal = (year + "-" + month + "-" + date);
 
   // Get existing cart from cookies

@@ -17,22 +17,19 @@ router.post('/', (req, res) => {
   var itemName = req.body.name;
   var itemPrice = req.body.price;
   var quantity = req.body.quantity;
-
   if (req.cookies.cart == null) {
     const initialData = [{item_name: itemName, quantity: quantity, price: itemPrice}];
     res.cookie('cart', JSON.stringify(initialData));
-    console.log(initialData);
-    res.redirect('/');
-    alert("Item successfully added to cart!");
+    alert(itemName + " added to cart!");
+    res.status(204).send();
   }
   else {
     const existingCart = JSON.parse(req.cookies.cart);
     const newData = {item_name: itemName, quantity: quantity, price: itemPrice};
     existingCart.push(newData);
-    console.log(existingCart);
     res.cookie('cart', JSON.stringify(existingCart));
-    res.redirect('/');
-    alert("Item successfully added to cart!");
+    alert(itemName + " added to cart!");
+    res.status(204).send();
   }
 });
 module.exports = router;

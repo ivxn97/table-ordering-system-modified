@@ -60,6 +60,26 @@
 		label{
 			line-height: 2;
 		}
+
+		.button {
+			background-color:lightgray;
+			color: black;
+			padding: 14px 20px;
+			margin: 8px 0;
+			border: none;
+			cursor: pointer;
+			width:100px;
+			border-radius: 15px;
+			font-weight: bold;
+			font-size:16px;
+			margin-left: 50px;
+			border: 2px solid black;
+		}
+		.button:hover {
+			opacity: 0.8;
+			background-color: black;
+			color:white;
+		}
 	</style>
 </head>
 
@@ -71,79 +91,11 @@
 	
 	<div class="tab">
 		<button class="tablinks" onclick="openTab(event, 'Search')" id="defaultOpen">Search Order</button>
-		<button class="tablinks" onclick="openTab(event, 'Remove')">Remove Order</button>
-		<button class="tablinks" onclick="openTab(event, 'Edit')">Edit Order</button>
-		<button class="tablinks" onclick="openTab(event, 'EditStatus')">Edit Order Status</button>
 		<form id="viewOrdersForm" action="/staffView" method="post">
-			<button type="submit">View All</button>
+			<button type="submit">Edit Orders</button>
 			<button type="button" onclick="Logoutfunction()">Logout</button>
 		</form>
 	</div>
-
-	<!-- Remove Order -->
-	<div id="Remove" class="tabcontent">
-	<table border ="1" width = 70%>
-		<tr>
-		<td style="padding-left: 15px; padding-bottom: 15px; padding-right: 15px;">
-		<form id="deleteOrderForm" action="/deleteOrder" method="post">
-			<p><u><b>Remove</b> a order from kitchen </u></p>
-			<label for="tableNumber"><b>Table Number:</b></label><br/>
-			<input type="text" placeholder="Table Number" id="tableNumber" name="tableNumber" required><br/><br/>
-			<label for="itemName"><b>Item Name:</b></label><br/>
-			<input type="text" placeholder="Item Name" id="itemName" name="itemName" required><br/><br/>
-			<button type="submit" style="border-color:red">Remove Item</button>
-		</form>
-	</td>
-	</tr>
-	</table>
-	</div>
-	
-	<!-- Edit Order Quantity -->
-	<div id="Edit" class="tabcontent">
-	<table border ="1" width = 70%>
-		<tr>
-			<td style="padding-left: 15px; padding-bottom: 15px; padding-right: 15px;">
-			<form id="editOrderForm" action="/editOrder" method="post">
-				<p><u><b>Edit</b> Order Quantity</u></p>
-				<label for="tableNumber"><b>Table Number:</b></label><br/>
-				<input type="text" placeholder="Table Number" id="tableNumber" name="tableNumber" required><br/><br/>
-				<label for="itemName"><b>Item Name of quantity to edit:</b></label><br/>
-				<input type="text" placeholder="Item Name" id="itemName" name="itemName" required><br/>
-
-				<p><u>Enter changes here:</u></p>
-				<label for="editQty"><b>Edit Quantity:</b></label><br/>
-				<input type="number" id="editQty" name="editQty" pattern="[0-9]+" oninvalid="setCustomValidity('No Special Characters Allowed')" required><br/><br/>
-				<button type="submit" style="border-color:rgb(115, 115, 115)">Save Changes</button>
-		</form>
-		</td>
-		</tr>
-	</table>
-	</div>
-
-	<!-- Edit Order Status -->
-	<div id="EditStatus" class="tabcontent">
-		<table border ="1" width = 70%>
-			<tr>
-				<td style="padding-left: 15px; padding-bottom: 15px; padding-right: 15px;">
-				<form id="editOrderStatusForm" action="/editOrderStatus" method="post">
-					<p><u><b>Edit</b> Order Status</u></p>
-					<label for="tableNumber"><b>Table Number:</b></label><br/>
-					<input type="text" placeholder="Table Number" id="tableNumber" name="tableNumber" required><br/><br/>
-					<label for="itemName"><b>Item Name of status to edit:</b></label><br/>
-					<input type="text" placeholder="Item Name" id="itemName" name="itemName" required><br/><br/>
-	
-					<label for="editStatus">Select Status Type:</label>
-					<select id="editStatus" name="editStatus">
-						<option value="new order">New Order</option>
-						<option value="in preparation">In Preparation</option>
-						<option value="ready to serve">Ready To Serve</option>
-					</select><br/><br/>
-					<button type="submit" style="border-color:rgb(115, 115, 115)">Save Changes</button>
-			</form>
-			</td>
-			</tr>
-		</table>
-		</div>
 
 	<!-- Search Order -->
 	<div id="Search" class="tabcontent">

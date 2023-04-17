@@ -29,7 +29,7 @@ router.post('/', async function(req, res) {
             alert("Login Failed. Please try again.");
           }
           else if (row.recordset[0] !== null) {
-            bcrypt.compare(password, row.recordset[0].password, function(err, result) {
+            bcrypt.compare(password, row.recordset[0].password, async function(err, result) {
               if (err) {
                 console.log(err);
                 alert("Login Failed. Please try again.");
@@ -45,7 +45,17 @@ router.post('/', async function(req, res) {
                 }
                 else if (row.recordset[0].profiletype == 'staff') {
                   console.log('Login Success');
-                  res.sendFile(path.join(__dirname,'../../public/staffPage.html'));
+                  try {
+                    await sql.query("SELECT * FROM kitchenorder", (error, rows) => {
+                        if (error){
+                            console.log(error);
+                        }
+                        res.render('viewOrders', {kitchenorder: rows.recordset});
+                    });
+                  }
+                  catch (err) {
+                      console.error(err);
+                  }
                 }
                 else if (row.recordset[0].profiletype == 'admin') {
                   console.log('Login Success');
