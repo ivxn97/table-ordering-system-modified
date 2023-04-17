@@ -23,7 +23,9 @@ router.get('/', async (req, res) => {
     const value = Number(Object.values(query)[0]);
     const cleanedObj = Object.assign({}, {[key]: value});
     const tableNumber = cleanedObj.table_number;
-
+    const currentCookie = req.cookies.tableNumber;
+    console.log(currentCookie);
+    
     if (tableNumber !== undefined) {
         res.cookie('tableNumber', JSON.stringify(tableNumber));
         try {
@@ -43,7 +45,7 @@ router.get('/', async (req, res) => {
             console.error(err);
         }
     }
-    else if (req.cookies.tableNumber !== 'undefined') {
+    else if (currentCookie !== undefined && currentCookie !== 'undefined') {
         try {
             await sql.connect(config);
             await sql.query("SELECT * FROM foodmenu", async (error, rows1) => {

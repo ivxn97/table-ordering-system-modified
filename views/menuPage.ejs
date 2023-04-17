@@ -58,7 +58,7 @@
             <tr>
             <td>
                 <form id="foodForm" action="/addToCart" method="post">
-                <input type="text" name="name" id="name" value="<%= food.item_name %>"readonly />
+                <input type="text" name="name" id="name" value="<%= food.item_name %>"readonly style="font-size: 20px;"/>
                 <input type="text" name="price" id="price" value="<%- food.item_price -%>" style ="width: 18%; text-align: center;" class="w3-dark-grey w3-round"readonly/>
                 <br/>
                     <label for="quantity">Select Quantity:</label>
@@ -88,7 +88,7 @@
             <tr>
             <td>
                 <form id="drinkForm" action="/addToCart" method="post">
-                <input type="text" name="name" id="name" value="<%= drink.item_name %>"readonly />
+                <input type="text" name="name" id="name" value="<%= drink.item_name %>"readonly style="font-size: 20px;"/>
                 <input type="text" name="price" id="price" value="<%- drink.item_price -%>" style ="width: 18%; text-align: center;" class="w3-dark-grey w3-round"readonly/>
                 <br/>
                     <label for="quantity">Select Quantity:</label>
