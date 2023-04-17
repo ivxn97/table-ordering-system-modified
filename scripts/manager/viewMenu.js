@@ -16,6 +16,9 @@ router.post('/', async (req, res) => {
     try {
         await sql.connect(config);
         await sql.query("SELECT * FROM foodmenu", async (error, rows1) => {
+            if (error){
+                console.log(error);
+            }
             await sql.query("SELECT * FROM drinkmenu", (error, rows2) => {
                 if (error){
                     console.log(error);

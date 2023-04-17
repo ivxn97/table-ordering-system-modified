@@ -28,7 +28,7 @@ router.post('/', async function(req, res) {
             console.log(err);
             alert("Login Failed. Please try again.");
           }
-          else if (row.recordset[0] !== null) {
+          else if (row.recordset[0] !== undefined) {
             bcrypt.compare(password, row.recordset[0].password, async function(err, result) {
               if (err) {
                 console.log(err);
@@ -76,5 +76,6 @@ router.post('/', async function(req, res) {
   catch (err) {
     console.log(err);
     alert("Login Failed. Please try again.");
+    res.send();
   }});
   module.exports = router;
